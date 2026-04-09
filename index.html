@@ -5,48 +5,98 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Muhammad Hasnain - Nikkah Invitation</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&family=Cinzel:wght@400;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;600&family=Cinzel:wght@400;700&display=swap');
 
         body, html {
             margin: 0; padding: 0; width: 100%; height: 100%;
             font-family: 'Poppins', sans-serif; background: #fdfaf3;
-            background-image: url('https://www.transparenttextures.com/patterns/marble-white.png');
             display: flex; justify-content: center; align-items: center; overflow-x: hidden;
         }
 
-        /* Initial Screen to enable Audio */
-        #overlay {
+        /* Visible Welcome Screen (No more blank screen) */
+        #welcome-screen {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle, #fffaf0, #e0d5c1); z-index: 100;
+            background: #fff; z-index: 100;
             display: flex; flex-direction: column; justify-content: center; align-items: center;
-            transition: 1.2s cubic-bezier(0.7, 0, 0.3, 1);
+            text-align: center; cursor: pointer;
         }
 
-        .enter-btn {
-            background: white; border: 1px solid #8c6a46; color: #8c6a46;
-            padding: 15px 50px; font-family: 'Cinzel', serif; letter-spacing: 4px;
-            cursor: pointer; transition: 0.5s; border-radius: 50px; font-size: 1rem;
-            box-shadow: 0 10px 20px rgba(140, 106, 70, 0.1);
+        .heart-icon {
+            font-size: 50px; color: #8c6a46; margin-bottom: 20px;
+            animation: pulse 1.5s infinite;
         }
 
-        .enter-btn:hover { background: #8c6a46; color: #fff; transform: translateY(-5px); }
+        @keyframes pulse { 0% {transform: scale(1);} 50% {transform: scale(1.1);} 100% {transform: scale(1);} }
 
-        /* Main Invitation Card */
-        .card-container {
-            width: 85%; max-width: 450px; background: #fff; padding: 60px 35px;
-            text-align: center; box-shadow: 0 40px 100px rgba(0,0,0,0.15);
-            border: 1px solid #e0d5c1; position: relative; display: none;
-            border-radius: 5px;
+        /* Main Card (Initially Hidden) */
+        #main-card {
+            width: 85%; max-width: 450px; background: #fff; padding: 50px 30px;
+            text-align: center; box-shadow: 0 30px 60px rgba(0,0,0,0.1);
+            border: 2px solid #e0d5c1; display: none;
+            animation: slideUp 1.2s ease-out;
         }
 
-        /* Advanced Floating Animations */
-        .float-in { opacity: 0; animation: floatIn 1.8s ease-out forwards; }
-        .slide-left { opacity: 0; animation: slideLeft 1.8s ease-out forwards; }
-        .slide-right { opacity: 0; animation: slideRight 1.8s ease-out forwards; }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(50px); } to { opacity: 1; transform: translateY(0); } }
 
-        @keyframes floatIn { from { transform: translateY(40px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-        @keyframes slideLeft { from { transform: translateX(-60px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
-        @keyframes slideRight { from { transform: translateX(60px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+        /* Floating elements delay */
+        .float-child { opacity: 0; animation: fadeIn 1s forwards; }
 
-        .calligraphy { font-family: 'Great Vibes', cursive; font-size: 2.8rem; color: #8c6a46; margin-bottom: 20px; }
-        .groom-name { font
+        @keyframes fadeIn { to { opacity: 1; } }
+
+        .groom-name { font-family: 'Cinzel', serif; font-size: 2.2rem; color: #8c6a46; font-weight: 700; margin: 15px 0; }
+        .bismillah { font-family: 'Great Vibes', cursive; font-size: 2.5rem; color: #8c6a46; }
+    </style>
+</head>
+<body onclick="startInvite()">
+
+    <audio id="inviteMusic" loop>
+        <source src="https://rabi-create.github.io/rabi-dadani/Bismillah%20Tere%20Naam%20Se%20Shuru%20Azaan%20320%20Kbps.mp3" type="audio/mpeg">
+    </audio>
+
+    <div id="welcome-screen">
+        <div class="heart-icon">❤️</div>
+        <h2 style="font-family: 'Cinzel', serif; color: #8c6a46; letter-spacing: 3px;">WELCOME</h2>
+        <p style="color: #888;">Tap anywhere to open the Invitation</p>
+    </div>
+
+    <div id="main-card">
+        <div class="bismillah float-child" style="animation-delay: 0.3s;">Bismillah-hir-Rahman-nir-Rahim</div>
+        
+        <p class="float-child" style="animation-delay: 0.6s; letter-spacing: 2px; font-size: 0.7rem; color: #777;">THE DADANI FAMILY INVITES YOU TO THE NIKKAH OF</p>
+
+        <div class="groom-name float-child" style="animation-delay: 0.9s;">MUHAMMAD HASNAIN</div>
+        <div class="float-child" style="animation-delay: 1.2s; color: #666;">S/O MUHAMMAD FAROOQ DADANI</div>
+
+        <div style="width: 50%; height: 1px; background: #e0d5c1; margin: 25px auto;" class="float-child" style="animation-delay: 1.5s;"></div>
+
+        <div class="float-child" style="animation-delay: 1.8s; font-family: 'Cinzel', serif; font-size: 1.3rem;">
+            SUNDAY | <strong>19 APRIL</strong> | 2026
+        </div>
+
+        <div class="float-child" style="animation-delay: 2.1s; margin-top: 20px;">
+            <strong style="color: #8c6a46;">AFTER NAMAZ E ASAR</strong><br>
+            Kanzul Eman Masjid, Gurumandir, Karachi
+        </div>
+
+        <div style="background: #fdfaf3; padding: 10px 20px; border-radius: 50px; display: inline-block; margin-top: 20px; font-weight: 600;" class="float-child" style="animation-delay: 2.4s;">
+            ASAR TIME: 5:20 PM
+        </div>
+
+        <p class="float-child" style="animation-delay: 2.7s; font-style: italic; color: #8c6a46; margin-top: 25px;">"Nikkah sirf masjid mein hai"</p>
+    </div>
+
+    <script>
+        function startInvite() {
+            // Start Music
+            var audio = document.getElementById("inviteMusic");
+            audio.play().catch(function(error) {
+                console.log("Autoplay blocked, waiting for interaction");
+            });
+
+            // Hide Welcome & Show Card
+            document.getElementById("welcome-screen").style.display = "none";
+            document.getElementById("main-card").style.display = "block";
+        }
+    </script>
+</body>
+</html>
