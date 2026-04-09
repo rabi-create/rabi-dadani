@@ -21,54 +21,70 @@
             cursor: pointer; transition: 0.8s ease;
         }
 
-        .play-btn { font-size: 50px; color: #8c6a46; margin-bottom: 20px; animation: pulse 2s infinite; }
+        .play-btn { font-size: 60px; color: #8c6a46; margin-bottom: 20px; animation: pulse 2s infinite; }
         @keyframes pulse { 0% {transform: scale(1);} 50% {transform: scale(1.1);} 100% {transform: scale(1);} }
 
         #main-card {
             width: 85%; max-width: 450px; background: #fff; padding: 40px 30px;
-            text-align: center; box-shadow: 0 30px 60px rgba(0,0,0,0.1);
-            border: 2px solid #e0d5c1; border-radius: 8px;
+            text-align: center; box-shadow: 0 30px 60px rgba(0,0,0,0.15);
+            border: 2px solid #e0d5c1; border-radius: 12px;
             display: none; opacity: 0;
         }
 
         .float-el { opacity: 0; transform: translateY(30px); transition: 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
         .is-visible { opacity: 1; transform: translateY(0); }
 
-        .bismillah { font-family: 'Great Vibes', cursive; font-size: 2.5rem; color: #8c6a46; }
-        .groom-name { font-family: 'Cinzel', serif; font-size: 2.2rem; color: #8c6a46; font-weight: 700; margin: 15px 0; }
+        .bismillah { font-family: 'Great Vibes', cursive; font-size: 2.5rem; color: #8c6a46; margin-bottom: 10px; }
+        .groom-name { font-family: 'Cinzel', serif; font-size: 2.2rem; color: #8c6a46; font-weight: 700; margin: 15px 0; letter-spacing: 2px; }
         .divider { width: 50%; height: 1px; background: #e0d5c1; margin: 20px auto; }
         
-        .time-badge { background: #fdfaf3; padding: 10px 25px; border-radius: 50px; display: inline-block; margin-top: 15px; font-weight: 600; color: #333; box-shadow: 4px 4px 10px #eee; }
-        .loc-btn { display: inline-block; margin-top: 20px; padding: 10px 20px; background: #8c6a46; color: #fff; text-decoration: none; border-radius: 5px; font-size: 0.8rem; font-weight: 600; letter-spacing: 1px; }
+        .time-badge { background: #fdfaf3; padding: 12px 25px; border-radius: 50px; display: inline-block; margin-top: 15px; font-weight: 600; color: #333; box-shadow: inset 2px 2px 5px rgba(0,0,0,0.05); }
+        .loc-btn { 
+            display: inline-block; margin-top: 25px; padding: 12px 25px; 
+            background: #8c6a46; color: #fff !important; text-decoration: none; 
+            border-radius: 5px; font-size: 0.85rem; font-weight: 600; 
+            letter-spacing: 1px; transition: 0.3s; 
+            box-shadow: 0 5px 15px rgba(140, 106, 70, 0.3); 
+        }
+        .loc-btn:hover { background: #5d462e; transform: translateY(-2px); }
     </style>
 </head>
 <body onclick="launchInvitation()">
 
     <audio id="bgMusic" preload="auto">
-        <source src="song.mp3.mp3" type="audio/mpeg">
         <source src="song.mp3" type="audio/mpeg">
+        <source src="song.mp3.mp3" type="audio/mpeg">
     </audio>
 
     <div id="welcome-screen">
         <div class="play-btn">🕌</div>
-        <h2 style="font-family: 'Cinzel', serif; color: #8c6a46; letter-spacing: 5px;">BISMILLAH</h2>
-        <p style="color: #999;">Tap to Open Invitation</p>
+        <h2 style="font-family: 'Cinzel', serif; color: #8c6a46; letter-spacing: 5px; margin: 0;">BISMILLAH</h2>
+        <p style="color: #999; margin-top: 10px;">Tap to Open Invitation</p>
     </div>
 
     <div id="main-card">
         <div class="bismillah float-el">Bismillah-hir-Rahman-nir-Rahim</div>
         <p class="float-el" style="letter-spacing: 2px; font-size: 0.7rem; color: #777; text-transform: uppercase;">The Dadani Family Invites You</p>
+        
         <div class="groom-name float-el">MUHAMMAD HASNAIN</div>
-        <div class="float-el" style="color: #666;">S/O MUHAMMAD FAROOQ DADANI</div>
+        <div class="float-el" style="color: #666; font-size: 1rem;">S/O MUHAMMAD FAROOQ DADANI</div>
+        
         <div class="divider float-el"></div>
-        <div class="float-el" style="font-family: 'Cinzel', serif; font-size: 1.3rem;">SUNDAY | <span style="color: #8c6a46;">19 APRIL</span> | 2026</div>
-        <div class="float-el" style="margin-top: 15px; font-size: 0.95rem;">
-            <strong>AFTER NAMAZ E ASAR</strong><br>
+        
+        <div class="float-el" style="font-family: 'Cinzel', serif; font-size: 1.4rem;">SUNDAY | <span style="color: #8c6a46;">19 APRIL</span> | 2026</div>
+        
+        <div class="float-el" style="margin-top: 20px; font-size: 1rem; line-height: 1.6;">
+            <strong style="color: #8c6a46;">AFTER NAMAZ E ASAR</strong><br>
             Kanzul Eman Masjid, Babri Chowk,<br> Gurumandir, Karachi
         </div>
-        <a href="https://maps.app.goo.gl/B9p6pZ8t6G1fJ8fA6" target="_blank" class="loc-btn float-el">📍 VIEW LOCATION</a><br>
+
+        <a href="https://share.google/ng91Lsp0fZ2BGQaKM" target="_blank" class="loc-btn float-el">📍 VIEW LOCATION</a><br>
+        
         <div class="time-badge float-el">ASAR TIME: 5:20 PM</div>
-        <p class="float-el" style="font-style: italic; color: #8c6a46; margin-top: 25px;">"Nikkah sirf masjid mein hai"</p>
+        
+        <p class="float-el" style="font-style: italic; color: #8c6a46; margin-top: 30px; border-top: 1px solid #eee; padding-top: 15px;">
+            "Nikkah sirf masjid mein hai"
+        </p>
     </div>
 
     <script>
@@ -78,24 +94,21 @@
             var card = document.getElementById("main-card");
             var elements = document.querySelectorAll('.float-el');
 
-            // Music play karein, agar error aaye toh console mein dikhaye par card rokna nahi
-            audio.play().catch(e => console.log("Audio play error"));
+            audio.play().catch(e => console.log("Audio play deferred"));
 
-            // Welcome screen ko foran hide karein
             welcome.style.opacity = "0";
             setTimeout(function() {
                 welcome.style.display = "none";
                 card.style.display = "block";
                 setTimeout(function() {
                     card.style.opacity = "1";
-                    // Sequential Floating Animation
                     elements.forEach(function(el, i) {
                         setTimeout(function() {
                             el.classList.add('is-visible');
-                        }, i * 250); 
+                        }, i * 300); 
                     });
                 }, 100);
-            }, 500);
+            }, 800);
         }
     </script>
 </body>
