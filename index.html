@@ -3,242 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Premium Nikkah Invitation - Muhammad Hasnain</title>
+    <title>Muhammad Hasnain - Nikkah Invitation</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&family=Cinzel:wght@400;700&display=swap');
 
         body, html {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-            overflow-x: hidden;
-            font-family: 'Poppins', sans-serif;
-            background: #fdfaf3; /* Cream Base */
+            margin: 0; padding: 0; width: 100%; height: 100%;
+            font-family: 'Poppins', sans-serif; background: #fdfaf3;
             background-image: url('https://www.transparenttextures.com/patterns/marble-white.png');
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: #333;
+            display: flex; justify-content: center; align-items: center; overflow-x: hidden;
         }
 
-        .invitation-wrapper {
-            position: relative;
-            z-index: 10;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
+        /* Initial Screen to enable Audio */
+        #overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle, #fffaf0, #e0d5c1); z-index: 100;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            transition: 1.2s cubic-bezier(0.7, 0, 0.3, 1);
         }
 
+        .enter-btn {
+            background: white; border: 1px solid #8c6a46; color: #8c6a46;
+            padding: 15px 50px; font-family: 'Cinzel', serif; letter-spacing: 4px;
+            cursor: pointer; transition: 0.5s; border-radius: 50px; font-size: 1rem;
+            box-shadow: 0 10px 20px rgba(140, 106, 70, 0.1);
+        }
+
+        .enter-btn:hover { background: #8c6a46; color: #fff; transform: translateY(-5px); }
+
+        /* Main Invitation Card */
         .card-container {
-            width: 90%;
-            max-width: 480px;
-            background: #fff;
-            padding: 50px 30px;
-            text-align: center;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.1);
-            border: 2px solid #e0d5c1;
-            position: relative;
-            overflow: hidden;
-            /* Entrance Animation */
-            opacity: 0;
-            animation: cardEntrance 1.5s ease-out forwards;
+            width: 85%; max-width: 450px; background: #fff; padding: 60px 35px;
+            text-align: center; box-shadow: 0 40px 100px rgba(0,0,0,0.15);
+            border: 1px solid #e0d5c1; position: relative; display: none;
+            border-radius: 5px;
         }
 
-        /* Floating background elements */
-        .marble-accent {
-            position: absolute;
-            width: 200px; height: 200px;
-            background-image: url('https://www.transparenttextures.com/patterns/marble-white.png');
-            background-size: contain;
-            opacity: 0.1;
-            filter: blur(2px);
-            animation: floatBackground 10s infinite linear;
-        }
-        .marble-accent.top-left { top: -50px; left: -50px; animation-delay: 0s; }
-        .marble-accent.bottom-right { bottom: -50px; right: -50px; animation-delay: 5s; }
+        /* Advanced Floating Animations */
+        .float-in { opacity: 0; animation: floatIn 1.8s ease-out forwards; }
+        .slide-left { opacity: 0; animation: slideLeft 1.8s ease-out forwards; }
+        .slide-right { opacity: 0; animation: slideRight 1.8s ease-out forwards; }
 
-        /* General Entrance Animations for all elements */
-        [class*="entry-"] {
-            opacity: 0;
-            animation-duration: 1s;
-            animation-fill-mode: forwards;
-            animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
+        @keyframes floatIn { from { transform: translateY(40px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        @keyframes slideLeft { from { transform: translateX(-60px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+        @keyframes slideRight { from { transform: translateX(60px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
 
-        /* Calligraphy text instead of broken image */
-        .calligraphy-text {
-            font-family: 'Great Vibes', cursive;
-            font-size: 2.2rem;
-            color: #8c6a46; /* Gold/Bronze */
-            margin-bottom: 15px;
-            text-shadow: 0 0 10px rgba(140, 106, 70, 0.3);
-            animation-name: entryFromLeft;
-            animation-delay: 0.5s;
-        }
-
-        .invite-text {
-            font-family: 'Poppins', sans-serif;
-            font-size: 0.85rem;
-            letter-spacing: 3px;
-            color: #777;
-            text-transform: uppercase;
-            margin-bottom: 25px;
-            font-weight: 300;
-            animation-name: entryFromRight;
-            animation-delay: 0.8s;
-        }
-
-        .groom-name {
-            font-family: 'Cinzel', serif;
-            font-size: 2.5rem;
-            color: #8c6a46;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 10px;
-            text-shadow: 0 0 15px rgba(140, 106, 70, 0.2);
-            animation-name: entryFromLeft;
-            animation-delay: 1.1s;
-        }
-
-        .parent-name {
-            font-size: 1rem;
-            color: #666;
-            margin-bottom: 35px;
-            animation-name: entryFromRight;
-            animation-delay: 1.4s;
-        }
-
-        .divider {
-            width: 50%;
-            height: 1px;
-            background: linear-gradient(to right, transparent, #e0d5c1, #8c6a46, #e0d5c1, transparent);
-            margin: 20px auto 30px;
-            animation-name: entryFromBottom;
-            animation-delay: 1.7s;
-        }
-
-        .date-section {
-            font-family: 'Cinzel', serif;
-            font-size: 1.5rem;
-            margin: 30px 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: #444;
-            animation-name: entryFromTop;
-            animation-delay: 2s;
-        }
-
-        .date-box {
-            border-left: 2px solid #8c6a46;
-            border-right: 2px solid #8c6a46;
-            padding: 0 25px;
-            margin: 0 15px;
-            font-weight: 700;
-        }
-
-        .venue-details {
-            font-size: 0.95rem;
-            line-height: 1.8;
-            margin-bottom: 25px;
-            animation-name: entryFromLeft;
-            animation-delay: 2.3s;
-        }
-
-        .time-badge-container {
-            display: flex;
-            justify-content: center;
-            margin: 15px 0 25px;
-            animation-name: entryFromBottom;
-            animation-delay: 2.6s;
-        }
-
-        .time-badge {
-            background: linear-gradient(145deg, #fdfaf3, #ffffff);
-            padding: 12px 35px;
-            border-radius: 50px;
-            box-shadow: 10px 10px 30px rgba(0,0,0,0.05), -10px -10px 30px rgba(255,255,255,0.7);
-            font-weight: 600;
-            color: #333;
-            font-size: 0.95rem;
-        }
-
-        .maps-link {
-            text-decoration: none;
-            color: #8c6a46;
-            font-size: 0.8rem;
-            border-bottom: 1px solid #e0d5c1;
-            padding-bottom: 3px;
-            transition: 0.3s;
-            animation-name: entryFromTop;
-            animation-delay: 2.9s;
-        }
-        .maps-link:hover { color: #5d462e; border-color: #5d462e; }
-
-        .note {
-            font-style: italic;
-            font-size: 0.85rem;
-            color: #8c6a46;
-            margin-top: 30px;
-            animation-name: entryFromBottom;
-            animation-delay: 3.2s;
-        }
-
-        /* Specific Element Entrance Animations */
-        @keyframes cardEntrance { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
-        @keyframes entryFromLeft { from { opacity: 0; transform: translateX(-40px); } to { opacity: 1; transform: translateX(0); } }
-        @keyframes entryFromRight { from { opacity: 0; transform: translateX(40px); } to { opacity: 1; transform: translateX(0); } }
-        @keyframes entryFromTop { from { opacity: 0; transform: translateY(-40px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes entryFromBottom { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
-        
-        @keyframes floatBackground { from { transform: translate(0,0) rotate(0deg); } to { transform: translate(10px, 10px) rotate(10deg); } }
-
-    </style>
-</head>
-<body>
-
-    <div class="invitation-wrapper">
-        <div class="card-container">
-            <div class="marble-accent top-left"></div>
-            <div class="marble-accent bottom-right"></div>
-
-            <div class="entry- calligraphy-text">Bismillah-hir-Rahman-nir-Rahim</div>
-
-            <div class="entry- invite-text">THE DADANI FAMILY GRACIOUSLY INVITES YOU TO THE NIKKAH CEREMONY OF</div>
-
-            <div class="entry- groom-name">MUHAMMAD HASNAIN</div>
-            <div class="entry- parent-name">S/O MUHAMMAD FAROOQ DADANI</div>
-
-            <div class="entry- divider"></div>
-
-            <div class="date-section entry-">
-                <span>SUNDAY</span>
-                <div class="date-box">19 APRIL</div>
-                <span>2026</span>
-            </div>
-
-            <div class="venue-details entry-">
-                <strong style="color: #8c6a46;">AFTER NAMAZ E ASAR</strong><br>
-                Kanzul Eman Masjid Babri Chowk,<br>
-                Gurumandir Chowrangi, Karachi
-                <br>
-                <a href="http://maps.google.com/maps?q=Kanzul+Eman+Masjid+Babri+Chowk" target="_blank" class="maps-link">📍 Open Precise Location</a>
-            </div>
-
-            <div class="time-badge-container entry-">
-                <div class="time-badge">
-                    ASAR TIME: 5:20 PM
-                </div>
-            </div>
-
-            <div class="entry- note">
-                "Nikkah sirf masjid mein hai"
-            </div>
-        </div>
-    </div>
-
-</body>
-</html>
+        .calligraphy { font-family: 'Great Vibes', cursive; font-size: 2.8rem; color: #8c6a46; margin-bottom: 20px; }
+        .groom-name { font
