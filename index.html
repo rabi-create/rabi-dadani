@@ -3,15 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sumair & ... Engagement & Aqeeqah Invitation</title>
+    <title>Sumair Loya - Invitation</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600;700&family=Cinzel:wght@400;700&display=swap');
 
         body, html {
             margin: 0; padding: 0; width: 100%; height: 100%;
             font-family: 'Poppins', sans-serif; background: #fdfaf3;
-            /* Yahan main background color rakha hai taake readable ho. Aap chahain toh original pearl frame background image bhi yahan add kar sakte hain:
-            background-image: url('YOUR_IMAGE_LINK_HERE'); background-size: cover; background-position: center; */
             display: flex; justify-content: center; align-items: center; overflow-x: hidden;
         }
 
@@ -31,38 +29,19 @@
             box-shadow: 0 30px 60px rgba(0,0,0,0.1); 
             border: 2px solid #e0d5c1; border-radius: 12px;
             display: none; opacity: 0;
-            animation: slideUp 1s forwards; animation-delay: 0.5s;
         }
-
-        @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
 
         .bismillah { font-family: 'Great Vibes', cursive; font-size: 2.2rem; color: #333; margin-bottom: 10px; }
         .invited-by { font-size: 1rem; font-weight: 600; color: #333; margin: 10px 0; }
-        .cordially { font-size: 0.85rem; color: #777; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px; }
-        
-        /* Event Sections */
-        .event-section { margin-bottom: 30px; border-bottom: 1px solid #eee; padding-bottom: 25px; }
-        .event-title { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.2rem; color: #333; }
-        .emoji { font-size: 1.3rem; margin-left: 5px; }
-
-        /* Names Styling */
-        .names { font-family: 'Great Vibes', cursive; font-size: 2.2rem; color: #a17c4f; font-weight: 400; margin: 15px 0; }
-        .and-sym { font-family: 'Poppins', sans-serif; font-size: 1.3rem; color: #777; }
-
-        /* Beloved Grand Sons Section */
-        .grandsons-section { font-size: 0.9rem; color: #555; margin: 20px 0; font-weight: 600; }
-        .grandson-names { font-family: 'Cinzel', serif; font-size: 1.1rem; color: #333; font-weight: 700; letter-spacing: 1px; }
-
-        /* Venue Details */
+        .event-title { font-weight: 700; font-size: 1.2rem; color: #333; }
+        .names { font-family: 'Great Vibes', cursive; font-size: 2.2rem; color: #a17c4f; margin: 15px 0; }
         .venue { margin-top: 25px; font-size: 0.95rem; color: #555; line-height: 1.6; }
-        .maps-link { display: inline-block; margin-top: 15px; padding: 10px 20px; background: #a17c4f; color: #fff; text-decoration: none; border-radius: 5px; font-size: 0.8rem; font-weight: 600; letter-spacing: 1px; transition: 0.3s; }
-        .maps-link:hover { background: #7d603c; transform: translateY(-2px); }
     </style>
 </head>
 <body onclick="startInvite()">
 
     <audio id="inviteMusic" loop>
-        <source src="song.mp3" type="audio/mpeg">
+        <source src="song.mp3.mp3" type="audio/mpeg">
     </audio>
 
     <div id="welcome-screen">
@@ -73,35 +52,20 @@
 
     <div id="main-card">
         <div class="bismillah">Bismillah-hir-Rahman-nir-Rahim</div>
-        
         <div class="invited-by">Mr & Mrs Shakeel Loya</div>
-        <div class="cordially">Cordially Invited you To</div>
-
-        <div class="event-section">
-            <div class="event-title">Engagement Party<span class="emoji">🥳</span></div>
-            <div class="names">Sumair Loya <span class="and-sym">&</span> ...<span style="font-family: 'Great Vibes', cursive;"></span></div>
-        </div>
-
-        <div style="font-size: 1.5rem; margin-top: -15px;">&</div>
-
-        <div class="event-section" style="margin-top: 20px;">
-            <div class="grandsons-section">There Beloved Grand Son's</div>
-            <div class="grandson-names">M.Hamdan <span class="and-sym">&</span> Mudassir</div>
-            <div class="event-title" style="margin-top: 15px;">Aqeeqah Ceremony<span class="emoji">🤩</span></div>
-        </div>
-
+        <div class="event-title">Engagement Party 🥳</div>
+        <div class="names">Sumair Loya & ...</div>
+        <div style="font-size: 1.5rem; margin: 10px 0;">&</div>
+        <div class="event-title">Aqeeqah Ceremony 🤩</div>
+        <div style="font-size: 0.9rem; font-weight: 600;">M.Hamdan & Mudassir</div>
         <div style="font-size: 1rem; color: #333; margin-top: 20px;">
-            <strong style="color: #a17c4f;">On Friday 17 April 2026</strong>
+            <strong>Friday 17 April 2026</strong>
         </div>
-
         <div class="venue">
             At: <strong>Orchid Event Solution</strong><br>
-            FB Area Block 4 Block,<br>
-            Gullberg Town,<br>
-            Karachi.....
+            FB Area Block 4, Gullberg Town, Karachi
         </div>
-
-        </div>
+    </div>
 
     <script>
         function startInvite() {
@@ -109,7 +73,10 @@
             var screen = document.getElementById("welcome-screen");
             var card = document.getElementById("main-card");
 
-            audio.play().catch(function(e) { console.log("Audio deferred"); });
+            // Browser security ki wajah se click par hi music play hota hai
+            audio.play().catch(function(error) {
+                console.log("Music play failed:", error);
+            });
 
             screen.style.opacity = "0";
             setTimeout(function() {
